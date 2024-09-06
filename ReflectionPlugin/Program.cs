@@ -1,3 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+using ReflectionPluginSDK;
 
-Console.WriteLine("Hello, World!");
+namespace ReflectionPlugin;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+    }
+
+    private static List<IPlugin> _plugins = null;
+
+    static List<IPlugin> ReadExtensions()
+    {
+        
+    }
+}
+
