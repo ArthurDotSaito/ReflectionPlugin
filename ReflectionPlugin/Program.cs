@@ -6,12 +6,22 @@ namespace ReflectionPlugin;
 
 class Program
 {
+    private static List<IPlugin> _plugins = null;
     static void Main(string[] args)
     {
+        _plugins = ReadExtensions();
+        Console.WriteLine($"{_plugins} plugins found.");
+        foreach (var ext in _plugins)
+        {
+            Console.WriteLine($"{ext.Title} - {ext.Description}");
+        }
+        Console.WriteLine("------------------------------------------------");
+        foreach (var ext in _plugins)
+        {
+            ext.DoSomething();
+        }
+        Console.WriteLine("------------------------------------------------");
     }
-
-    private static List<IPlugin> _plugins = null;
-
     static List<IPlugin> ReadExtensions()
     {
         var pluginsList = new List<IPlugin>();
