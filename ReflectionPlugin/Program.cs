@@ -10,7 +10,9 @@ class Program
     static void Main(string[] args)
     {
         _plugins = ReadExtensions();
-        Console.WriteLine($"{_plugins} plugins found.");
+        
+        Console.WriteLine($"{_plugins.Count} plugins found.");
+        
         foreach (var ext in _plugins)
         {
             Console.WriteLine($"{ext.Title} - {ext.Description}");
@@ -21,6 +23,7 @@ class Program
             ext.DoSomething();
         }
         Console.WriteLine("------------------------------------------------");
+        Console.ReadKey();
     }
     static List<IPlugin> ReadExtensions()
     {
@@ -29,7 +32,7 @@ class Program
 
         foreach (var file in files)
         {
-            var assembly = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), file));
+            var assembly = Assembly.LoadFrom(Path.Combine(Directory.GetCurrentDirectory(), file));
             
             var pluginTypes = assembly.GetTypes().Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsInterface).ToArray();
 
